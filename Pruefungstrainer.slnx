@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Pruefungstrainer.Core/Pruefungstrainer.Core.csproj"/>
+    <Project Path="src/Pruefungstrainer.Infrastructure/Pruefungstrainer.Infrastructure.csproj"/>
+    <Project Path="src/Pruefungstrainer.Web/Pruefungstrainer.Web.csproj"/>
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Pruefungstrainer.Tests/Pruefungstrainer.Tests.csproj"/>
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md"/>
+  </Folder>
+</Solution>

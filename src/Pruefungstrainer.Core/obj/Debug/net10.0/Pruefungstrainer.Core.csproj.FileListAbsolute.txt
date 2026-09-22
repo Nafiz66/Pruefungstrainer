@@ -1,0 +1,11 @@
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\bin\Debug\net10.0\Pruefungstrainer.Core.deps.json
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\bin\Debug\net10.0\Pruefungstrainer.Core.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\bin\Debug\net10.0\Pruefungstrainer.Core.pdb
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\Pruefungstrainer.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\Pruefungstrainer.Core.AssemblyInfoInputs.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\Pruefungstrainer.Core.AssemblyInfo.cs
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\Pruefungstrainer.Core.csproj.CoreCompileInputs.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\Pruefungstrainer.Core.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\refint\Pruefungstrainer.Core.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\Pruefungstrainer.Core.pdb
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Core\obj\Debug\net10.0\ref\Pruefungstrainer.Core.dll

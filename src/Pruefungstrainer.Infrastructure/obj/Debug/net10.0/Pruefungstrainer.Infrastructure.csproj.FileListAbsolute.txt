@@ -1,0 +1,17 @@
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\bin\Debug\net10.0\Pruefungstrainer.Infrastructure.deps.json
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\bin\Debug\net10.0\Pruefungstrainer.Infrastructure.runtimeconfig.json
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\bin\Debug\net10.0\Pruefungstrainer.Infrastructure.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\bin\Debug\net10.0\Pruefungstrainer.Infrastructure.pdb
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\bin\Debug\net10.0\Pruefungstrainer.Core.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\bin\Debug\net10.0\Pruefungstrainer.Core.pdb
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.AssemblyInfo.cs
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefung.2A05218E.Up2Date
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\refint\Pruefungstrainer.Infrastructure.dll
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.pdb
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.genruntimeconfig.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\ref\Pruefungstrainer.Infrastructure.dll
