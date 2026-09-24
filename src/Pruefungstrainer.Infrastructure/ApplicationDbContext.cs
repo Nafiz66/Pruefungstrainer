@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using PruefungstrainingPlattform.Core.Entities;
+using Pruefungstrainer.Core.Entities;
 
-namespace PruefungstrainingPlattform.Infrastructure.Data;
+namespace Pruefungstrainer.Infrastructure.Data;
 
 /// <summary>
 /// Der EF-Core-DbContext der Prüfungstrainingsplattform. Bündelt alle

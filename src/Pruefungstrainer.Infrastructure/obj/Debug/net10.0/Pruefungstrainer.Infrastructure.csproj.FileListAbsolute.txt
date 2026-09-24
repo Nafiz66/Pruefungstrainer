@@ -9,6 +9,7 @@ C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\
 C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.AssemblyInfoInputs.cache
 C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.AssemblyInfo.cs
 C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.sourcelink.json
 C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefung.2A05218E.Up2Date
 C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\Pruefungstrainer.Infrastructure.dll
 C:\Users\nafis\souce\repos\Pruefungstrainer\src\Pruefungstrainer.Infrastructure\obj\Debug\net10.0\refint\Pruefungstrainer.Infrastructure.dll

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PruefungstrainingPlattform.Core.Entities;
+namespace Pruefungstrainer.Core.Entities;
 
 /// <summary>
 /// Eine einzelne Antwortoption einer Multiple-Choice-<see cref="Entities.Frage"/>.

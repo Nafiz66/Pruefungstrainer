@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PruefungstrainingPlattform.Core.Entities;
+namespace Pruefungstrainer.Core.Entities;
 
 /// <summary>
 /// Ein fachliches Themengebiet (z.B. "Datenbanken – AP1"), dem Lernpfade,

@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PruefungstrainingPlattform.Core.Entities;
+using Pruefungstrainer.Core.Entities;
 
-namespace PruefungstrainingPlattform.Infrastructure.Data.Configurations;
+namespace Pruefungstrainer.Infrastructure.Data.Configurations;
 
 public class AntwortoptionConfiguration : IEntityTypeConfiguration<Antwortoption>
 {

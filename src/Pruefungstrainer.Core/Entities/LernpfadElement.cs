@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PruefungstrainingPlattform.Core.Entities;
+namespace Pruefungstrainer.Core.Entities;
 
 /// <summary>
 /// Verknüpft einen <see cref="Entities.Lernpfad"/> mit genau einer Karteikarte

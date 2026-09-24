@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PruefungstrainingPlattform.Core.Entities;
+namespace Pruefungstrainer.Core.Entities;
 
 /// <summary>
 /// Repräsentiert einen Benutzer der Plattform – entweder eine Lehrkraft oder einen Teilnehmer.

@@ -1,4 +1,4 @@
-namespace PruefungstrainingPlattform.Core.Entities;
+namespace Pruefungstrainer.Core.Entities;
 
 /// <summary>
 /// Rollen der Benutzer innerhalb der Plattform.
