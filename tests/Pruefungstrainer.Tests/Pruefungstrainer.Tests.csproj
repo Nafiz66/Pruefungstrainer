@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Pruefungstrainer.Core\Pruefungstrainer.Core.csproj" />
+    <ProjectReference Include="..\..\src\Pruefungstrainer.Infrastructure\Pruefungstrainer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

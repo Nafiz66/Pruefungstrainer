@@ -1,20 +1,33 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Pruefungstrainer.Web.Models;
 
 namespace Pruefungstrainer.Web.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: /
+        // GET: /Home
         public IActionResult Index()
         {
-            // Leitet die Startseite vorerst auf den Fragen-Controller weiter 
-            // oder zeigt eine Begrüßung an.
             return View();
         }
 
+        // GET: /Home/Privacy
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        // Wird von app.UseExceptionHandler("/Home/Error") aufgerufen, wenn außerhalb
+        // der Entwicklungsumgebung eine unbehandelte Exception auftritt.
+        // Kein Caching, damit nie eine alte Fehlerseite ausgeliefert wird.
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel
+            {
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
     }
 }

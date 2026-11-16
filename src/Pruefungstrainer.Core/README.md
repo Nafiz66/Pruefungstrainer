@@ -1,6 +1,6 @@
 # Core-Layer – Entitäten (Prüfungstrainingsplattform)
 
-Namespace: `PruefungstrainingPlattform.Core.Entities`
+Namespace: `Pruefungstrainer.Core.Entities`
 
 ## Übersicht der Entitäten
 

@@ -16,7 +16,7 @@ namespace Pruefungstrainer.Web.Controllers
         // GET: /Fragen/
         public async Task<IActionResult> Index()
         {
-            // Holt alle Fragen aus der SQLite-Datenbank (aktuell vermutlich noch leer)
+            // Holt alle Fragen aus der SQLite-Datenbank
             var fragenList = await _context.Fragen.ToListAsync();
             return View(fragenList);
         }

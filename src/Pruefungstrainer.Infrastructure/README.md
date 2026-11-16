@@ -1,7 +1,7 @@
 # Infrastructure-Layer – EF Core / SQLite
 
-Namespace: `PruefungstrainingPlattform.Infrastructure.Data`
-(Konfigurationen unter `PruefungstrainingPlattform.Infrastructure.Data.Configurations`)
+Namespace: `Pruefungstrainer.Infrastructure.Data`
+(Konfigurationen unter `Pruefungstrainer.Infrastructure.Data.Configurations`)
 
 ## Projektstruktur
 
@@ -49,7 +49,7 @@ und muss deshalb im Startup-Projekt (Web) liegen, nicht zwingend im Infrastructu
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=pruefungstraining.db"
+    "DefaultConnection": "Data Source=pruefungstrainer.db"
   }
 }
 ```
@@ -61,7 +61,7 @@ Für Produktion/Tests kann hier später z.B. ein absoluter Pfad oder ein Pfad in
 
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using PruefungstrainingPlattform.Infrastructure.Data;
+using Pruefungstrainer.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

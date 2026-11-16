@@ -7,7 +7,4 @@
   <Folder Name="/tests/">
     <Project Path="tests/Pruefungstrainer.Tests/Pruefungstrainer.Tests.csproj"/>
   </Folder>
-  <Folder Name="/Solution Items/">
-    <File Path="README.md"/>
-  </Folder>
 </Solution>

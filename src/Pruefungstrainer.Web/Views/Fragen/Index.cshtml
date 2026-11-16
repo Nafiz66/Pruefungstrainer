@@ -1,5 +1,4 @@
-
-@model IEnumerable<Pruefungstrainer.Core.Entities.Frage>
+@model IEnumerable<Frage>
 
 @{
     ViewData["Title"] = "Prüfungsfragen";
@@ -14,7 +13,7 @@
     @if (Model == null || !Model.Any())
     {
         <div class="alert alert-warning" role="alert">
-            Keine Fragen gefunden! Die Datenbank ist aktuell noch leer. Wir können gleich ein paar Testdaten hinzufügen.
+            Keine Fragen gefunden. Die Datenbank enthält noch keine Fragen.
         </div>
     }
     else
