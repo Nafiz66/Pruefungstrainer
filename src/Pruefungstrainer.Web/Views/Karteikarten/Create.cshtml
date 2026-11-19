@@ -1,0 +1,19 @@
+@model KarteikarteFormViewModel
+
+@{
+    ViewData["Title"] = "Karteikarte anlegen";
+}
+
+<h1>Karteikarte anlegen</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create" method="post">
+            <partial name="_Formular" model="Model" />
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,38 @@
+@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Benutzer";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Benutzer</h1>
+    <a class="btn btn-primary" asp-action="Create">Neuer Benutzer</a>
+</div>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>Rolle</th>
+            <th>Angelegt am</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var benutzer in Model)
+        {
+            <tr>
+                <td>@benutzer.Vorname @benutzer.Nachname</td>
+                <td>@benutzer.Email</td>
+                <td><span class="badge @(benutzer.Rolle == UserRole.Lehrkraft ? "bg-primary" : "bg-secondary")">@benutzer.Rolle</span></td>
+                <td>@benutzer.ErstelltAm.ToLocalTime().ToString("dd.MM.yyyy")</td>
+                <td class="text-end">
+                    <form asp-action="Delete" asp-route-id="@benutzer.Id" method="post" class="d-inline"
+                          data-bestaetigen="Benutzer '@benutzer.Vorname @benutzer.Nachname' mit allen Lernständen und Ergebnissen löschen?">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Löschen</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

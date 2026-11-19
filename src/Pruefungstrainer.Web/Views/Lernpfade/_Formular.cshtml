@@ -1,0 +1,31 @@
+@model LernpfadFormViewModel
+@* Gemeinsame Formularfelder für "Lernpfad anlegen" und "Lernpfad bearbeiten". *@
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+    <label asp-for="Titel" class="form-label"></label>
+    <input asp-for="Titel" class="form-control" />
+    <span asp-validation-for="Titel" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="ThemengebietId" class="form-label"></label>
+    <select asp-for="ThemengebietId" asp-items="Model.ThemengebietAuswahl" class="form-select">
+        <option value="0">– bitte wählen –</option>
+    </select>
+    <span asp-validation-for="ThemengebietId" class="text-danger"></span>
+    @if (Model.HatElemente)
+    {
+        <div class="form-text">Der Lernpfad enthält bereits Inhalte – das Themengebiet kann nicht mehr geändert werden.</div>
+    }
+</div>
+
+<div class="mb-3">
+    <label asp-for="Beschreibung" class="form-label"></label>
+    <textarea asp-for="Beschreibung" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Beschreibung" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Speichern</button>
+<a asp-action="Index" class="btn btn-secondary">Abbrechen</a>

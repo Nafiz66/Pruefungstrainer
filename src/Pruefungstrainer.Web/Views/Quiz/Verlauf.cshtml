@@ -1,0 +1,46 @@
+@model IEnumerable<Pruefungsergebnis>
+
+@{
+    ViewData["Title"] = "Meine Ergebnisse";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Meine Ergebnisse</h1>
+    <a class="btn btn-primary" asp-action="Pruefung">Prüfungssimulation starten</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Du hast noch kein Quiz und keine Prüfungssimulation abgeschlossen.</div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Datum</th>
+                <th>Art</th>
+                <th>Punkte</th>
+                <th>Ergebnis</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ergebnis in Model)
+            {
+                var prozent = ergebnis.MaxPunkte == 0 ? 0 : ergebnis.ErreichtePunkte * 100 / ergebnis.MaxPunkte;
+                <tr>
+                    <td>@ergebnis.DurchgefuehrtAm.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@(ergebnis.Lernpfad is not null ? "Lernpfad: " + ergebnis.Lernpfad.Titel : "Quiz / Simulation")</td>
+                    <td>@ergebnis.ErreichtePunkte / @ergebnis.MaxPunkte (@prozent %)</td>
+                    <td>
+                        <span class="badge @(ergebnis.Bestanden ? "bg-success" : "bg-warning text-dark")">@(ergebnis.Bestanden ? "bestanden" : "nicht bestanden")</span>
+                    </td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Ergebnis" asp-route-id="@ergebnis.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

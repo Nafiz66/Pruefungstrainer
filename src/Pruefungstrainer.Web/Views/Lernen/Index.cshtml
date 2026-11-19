@@ -1,0 +1,63 @@
+@model LernenIndexViewModel
+
+@{
+    ViewData["Title"] = "Lernen";
+}
+
+<h1>Lernbereich</h1>
+
+<h2 class="h4 mt-4">Lernpfade</h2>
+@if (!Model.Lernpfade.Any(l => l.Elemente.Count > 0))
+{
+    <p class="text-muted">Es sind noch keine Lernpfade mit Inhalten vorhanden.</p>
+}
+else
+{
+    <div class="list-group mb-4">
+        @foreach (var lernpfad in Model.Lernpfade.Where(l => l.Elemente.Count > 0))
+        {
+            <a class="list-group-item list-group-item-action" asp-action="Lernpfad" asp-route-id="@lernpfad.Id">
+                <div class="d-flex justify-content-between">
+                    <strong>@lernpfad.Titel</strong>
+                    <span class="badge bg-secondary">@lernpfad.Elemente.Count Schritte</span>
+                </div>
+                <small class="text-muted">@lernpfad.Themengebiet.Name @(string.IsNullOrWhiteSpace(lernpfad.Beschreibung) ? "" : "– " + lernpfad.Beschreibung)</small>
+            </a>
+        }
+    </div>
+}
+
+<h2 class="h4 mt-4">Themengebiete</h2>
+<div class="row g-3">
+    @foreach (var kachel in Model.Themengebiete)
+    {
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h3 class="h5 card-title">
+                        @kachel.Themengebiet.Name
+                        @if (!string.IsNullOrWhiteSpace(kachel.Themengebiet.Kategorie))
+                        {
+                            <span class="badge bg-light text-dark border">@kachel.Themengebiet.Kategorie</span>
+                        }
+                    </h3>
+                    <p class="card-text small text-muted">@kachel.Themengebiet.Beschreibung</p>
+                    <p class="card-text small mb-0">
+                        Karteikarten: @kachel.GelernteKarteikarten / @kachel.AnzahlKarteikarten gelernt<br />
+                        Fragen: @kachel.AnzahlFragen
+                    </p>
+                </div>
+                <div class="card-footer bg-white d-flex gap-2">
+                    @if (kachel.AnzahlKarteikarten > 0)
+                    {
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Karteikarten" asp-route-id="@kachel.Themengebiet.Id">Karteikarten lernen</a>
+                    }
+                    @if (kachel.AnzahlFragen > 0)
+                    {
+                        <a class="btn btn-sm btn-primary" asp-controller="Quiz" asp-action="Start" asp-route-themengebietId="@kachel.Themengebiet.Id">Quiz starten</a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

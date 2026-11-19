@@ -1,9 +1,61 @@
 @{
     ViewData["Title"] = "Startseite";
+    var istLehrkraft = User.IsInRole(nameof(UserRole.Lehrkraft));
 }
 
-<div class="text-center">
-    <h1 class="display-4">Willkommen beim Prüfungstrainer</h1>
-    <p>Bereite dich mit Karteikarten, Lernpfaden und Prüfungssimulationen auf deine IHK-Prüfung vor.</p>
-    <a class="btn btn-primary" asp-controller="Fragen" asp-action="Index">Zu den Fragen</a>
+<div class="text-center mb-4">
+    <h1 class="display-5">Prüfungstrainer</h1>
+    <p class="lead">Bereite dich mit Lernpfaden, Karteikarten und Prüfungssimulationen auf AP1 und AP2 vor.</p>
 </div>
+
+@if (User.Identity?.IsAuthenticated != true)
+{
+    <div class="text-center">
+        <a class="btn btn-primary btn-lg me-2" asp-controller="Account" asp-action="Login">Anmelden</a>
+        <a class="btn btn-outline-primary btn-lg" asp-controller="Account" asp-action="Registrieren">Registrieren</a>
+    </div>
+}
+else
+{
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Lernen</h5>
+                    <p class="card-text">Lernpfade bearbeiten, mit Karteikarten lernen und Quiz zu einzelnen Themen machen.</p>
+                    <a class="btn btn-primary" asp-controller="Lernen" asp-action="Index">Zum Lernbereich</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Prüfungssimulation</h5>
+                    <p class="card-text">Gemischte Fragen aus allen Themengebieten mit Zeitlimit – wie in der echten Prüfung.</p>
+                    <a class="btn btn-primary" asp-controller="Quiz" asp-action="Pruefung">Simulation starten</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Meine Ergebnisse</h5>
+                    <p class="card-text">Alle bisherigen Quiz- und Prüfungsergebnisse im Überblick.</p>
+                    <a class="btn btn-primary" asp-controller="Quiz" asp-action="Verlauf">Ergebnisse ansehen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (istLehrkraft)
+    {
+        <h2 class="h4 mt-5">Verwaltung</h2>
+        <div class="list-group">
+            <a class="list-group-item list-group-item-action" asp-controller="Themengebiete" asp-action="Index">Themengebiete verwalten</a>
+            <a class="list-group-item list-group-item-action" asp-controller="Fragen" asp-action="Index">Prüfungsfragen verwalten</a>
+            <a class="list-group-item list-group-item-action" asp-controller="Karteikarten" asp-action="Index">Karteikarten verwalten</a>
+            <a class="list-group-item list-group-item-action" asp-controller="Lernpfade" asp-action="Index">Lernpfade verwalten</a>
+            <a class="list-group-item list-group-item-action" asp-controller="Benutzer" asp-action="Index">Benutzer verwalten</a>
+        </div>
+    }
+}

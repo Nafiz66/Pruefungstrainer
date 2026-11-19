@@ -1,0 +1,35 @@
+@model BenutzerFormViewModel
+@* Gemeinsame Felder für Registrierung und "Benutzer anlegen" – so gibt es das Formular nur einmal. *@
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label asp-for="Vorname" class="form-label"></label>
+        <input asp-for="Vorname" class="form-control" autocomplete="given-name" />
+        <span asp-validation-for="Vorname" class="text-danger"></span>
+    </div>
+    <div class="col-md-6 mb-3">
+        <label asp-for="Nachname" class="form-label"></label>
+        <input asp-for="Nachname" class="form-control" autocomplete="family-name" />
+        <span asp-validation-for="Nachname" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Email" class="form-label"></label>
+    <input asp-for="Email" class="form-control" autocomplete="email" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Passwort" class="form-label"></label>
+    <input asp-for="Passwort" class="form-control" autocomplete="new-password" />
+    <span asp-validation-for="Passwort" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="PasswortWiederholung" class="form-label"></label>
+    <input asp-for="PasswortWiederholung" class="form-control" autocomplete="new-password" />
+    <span asp-validation-for="PasswortWiederholung" class="text-danger"></span>
+</div>

@@ -1,12 +1,14 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pruefungstrainer.Web.Models;
 
 namespace Pruefungstrainer.Web.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        // GET: /Home
+        // GET: / – Startseite; zeigt je nach Rolle passende Kacheln (siehe View)
         public IActionResult Index()
         {
             return View();

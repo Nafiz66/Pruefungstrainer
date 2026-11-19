@@ -1,0 +1,86 @@
+@model LernpfadSchrittViewModel
+
+@{
+    ViewData["Title"] = Model.Lernpfad.Titel;
+    var prozent = Model.Schritt * 100 / Model.AnzahlSchritte;
+    var element = Model.Element;
+}
+
+<h1>@Model.Lernpfad.Titel</h1>
+
+<div class="mb-3">
+    <div class="d-flex justify-content-between small">
+        <span>Schritt @Model.Schritt von @Model.AnzahlSchritte</span>
+        <span>@element.Typ</span>
+    </div>
+    <div class="progress" role="progressbar" aria-valuenow="@prozent" aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar" style="width: @prozent%"></div>
+    </div>
+</div>
+
+@if (element.Typ == ElementTyp.Karteikarte && element.Karteikarte is not null)
+{
+    <partial name="_Karteikarte" model="element.Karteikarte" />
+
+    @* Das Ergebnis fließt in den normalen Karteikarten-Lernstand ein, danach geht es zum nächsten Schritt. *@
+    <form asp-action="Bewerten" method="post" class="d-flex gap-2 mt-3">
+        <input type="hidden" name="karteikarteId" value="@element.Karteikarte.Id" />
+        <input type="hidden" name="themengebietId" value="@Model.Lernpfad.ThemengebietId" />
+        <input type="hidden" name="lernpfadId" value="@Model.Lernpfad.Id" />
+        <input type="hidden" name="schritt" value="@Model.Schritt" />
+        <button type="submit" name="gewusst" value="false" class="btn btn-outline-danger flex-fill">Nicht gewusst</button>
+        <button type="submit" name="gewusst" value="true" class="btn btn-success flex-fill">Gewusst</button>
+    </form>
+}
+else if (element.Frage is not null)
+{
+    var frage = element.Frage;
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <p class="small text-muted mb-1">Übungsfrage (@frage.Punkte Punkte)</p>
+            <p class="fs-5">@frage.Fragetext</p>
+
+            @if (frage.Typ == Fragetyp.MultipleChoice)
+            {
+                <ul>
+                    @foreach (var option in frage.Antwortoptionen.OrderBy(a => a.Id))
+                    {
+                        <li>@option.Text</li>
+                    }
+                </ul>
+            }
+
+            <details>
+                <summary class="btn btn-sm btn-outline-secondary">Lösung anzeigen</summary>
+                <div class="mt-3 p-3 bg-light rounded">
+                    @if (frage.Typ == Fragetyp.MultipleChoice)
+                    {
+                        <strong>Richtig:</strong>
+                        @string.Join(", ", frage.Antwortoptionen.Where(a => a.IstKorrekt).Select(a => a.Text))
+                    }
+                    else
+                    {
+                        <strong>Musterlösung:</strong> @frage.MusterloesungFreitext
+                    }
+                </div>
+            </details>
+        </div>
+    </div>
+    <p class="small text-muted mt-2">Übungsfragen werden hier nicht gewertet – das passiert im Abschlusstest am Ende des Lernpfads.</p>
+
+    <a class="btn btn-primary mt-2" asp-action="Lernpfad" asp-route-id="@Model.Lernpfad.Id" asp-route-schritt="@(Model.Schritt + 1)">
+        @(Model.IstLetzterSchritt ? "Lernpfad abschließen" : "Weiter")
+    </a>
+}
+
+<div class="mt-4 d-flex justify-content-between">
+    @if (Model.Schritt > 1)
+    {
+        <a class="btn btn-link" asp-action="Lernpfad" asp-route-id="@Model.Lernpfad.Id" asp-route-schritt="@(Model.Schritt - 1)">« Zurück</a>
+    }
+    else
+    {
+        <span></span>
+    }
+    <a class="btn btn-link" asp-action="Index">Lernpfad verlassen</a>
+</div>

@@ -1,0 +1,16 @@
+@* Zeigt Erfolgs- und Fehlermeldungen aus TempData an (gesetzt im Controller vor einem Redirect).
+   TempData überlebt genau eine Weiterleitung und wird beim Lesen automatisch gelöscht. *@
+@if (TempData["Erfolg"] is string erfolg)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @erfolg
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Schließen"></button>
+    </div>
+}
+@if (TempData["Fehler"] is string fehler)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @fehler
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Schließen"></button>
+    </div>
+}

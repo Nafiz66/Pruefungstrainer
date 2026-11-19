@@ -4,38 +4,46 @@
     ViewData["Title"] = "Prüfungsfragen";
 }
 
-<div class="container mt-4">
-    <h2>Prüfungsfragen-Übersicht</h2>
-    <p class="text-muted">Hier siehst du alle aktuell in der SQLite-Datenbank hinterlegten Fragen.</p>
-
-    <hr />
-
-    @if (Model == null || !Model.Any())
-    {
-        <div class="alert alert-warning" role="alert">
-            Keine Fragen gefunden. Die Datenbank enthält noch keine Fragen.
-        </div>
-    }
-    else
-    {
-        <table class="table table-striped table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Fragetext</th>
-                    <th>Punkte</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var frage in Model)
-                {
-                    <tr>
-                        <td>@frage.Id</td>
-                        <td>@frage.Fragetext</td>
-                        <td>@frage.Punkte</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Prüfungsfragen</h1>
+    <a class="btn btn-primary" asp-action="Create" asp-route-themengebietId="@ViewData["ThemengebietId"]">Neue Frage</a>
 </div>
+
+<partial name="_ThemengebietFilter" />
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Keine Fragen gefunden.</div>
+}
+else
+{
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Fragetext</th>
+                <th>Typ</th>
+                <th>Punkte</th>
+                <th>Themengebiet</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var frage in Model)
+            {
+                <tr>
+                    <td>@frage.Fragetext</td>
+                    <td>@(frage.Typ == Fragetyp.MultipleChoice ? "Multiple Choice" : "Freitext")</td>
+                    <td>@frage.Punkte</td>
+                    <td>@frage.Themengebiet.Name</td>
+                    <td class="text-end text-nowrap">
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@frage.Id">Bearbeiten</a>
+                        <form asp-action="Delete" asp-route-id="@frage.Id" method="post" class="d-inline"
+                              data-bestaetigen="Diese Frage wirklich löschen?">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Löschen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

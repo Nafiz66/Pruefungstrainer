@@ -1,0 +1,56 @@
+@model FrageFormViewModel
+@* Gemeinsame Formularfelder für "Frage anlegen" und "Frage bearbeiten". *@
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+    <label asp-for="Fragetext" class="form-label"></label>
+    <textarea asp-for="Fragetext" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="Fragetext" class="text-danger"></span>
+</div>
+
+<div class="row">
+    <div class="col-md-5 mb-3">
+        <label asp-for="ThemengebietId" class="form-label"></label>
+        <select asp-for="ThemengebietId" asp-items="Model.ThemengebietAuswahl" class="form-select">
+            <option value="0">– bitte wählen –</option>
+        </select>
+        <span asp-validation-for="ThemengebietId" class="text-danger"></span>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label asp-for="Typ" class="form-label"></label>
+        <select asp-for="Typ" class="form-select" data-fragetyp-auswahl>
+            <option value="@Fragetyp.MultipleChoice">Multiple Choice</option>
+            <option value="@Fragetyp.Freitext">Freitext</option>
+        </select>
+    </div>
+    <div class="col-md-3 mb-3">
+        <label asp-for="Punkte" class="form-label"></label>
+        <input asp-for="Punkte" class="form-control" min="1" max="100" />
+        <span asp-validation-for="Punkte" class="text-danger"></span>
+    </div>
+</div>
+
+<fieldset class="mb-3" data-nur-bei-typ="@Fragetyp.MultipleChoice">
+    <legend class="fs-6">Antwortoptionen <small class="text-muted">(leere Felder werden ignoriert, mehrere richtige Antworten sind möglich)</small></legend>
+    @for (var i = 0; i < Model.Antwortoptionen.Count; i++)
+    {
+        <div class="input-group mb-2">
+            <div class="input-group-text">
+                <input asp-for="Antwortoptionen[i].IstKorrekt" class="form-check-input mt-0" title="Richtige Antwort" />
+                <span class="ms-2">richtig</span>
+            </div>
+            <input asp-for="Antwortoptionen[i].Text" class="form-control" placeholder="Antwort @(i + 1)" />
+        </div>
+    }
+</fieldset>
+
+<div class="mb-3" data-nur-bei-typ="@Fragetyp.Freitext">
+    <label asp-for="MusterloesungFreitext" class="form-label"></label>
+    <textarea asp-for="MusterloesungFreitext" class="form-control" rows="3"></textarea>
+    <span asp-validation-for="MusterloesungFreitext" class="text-danger"></span>
+    <div class="form-text">Wird dem Teilnehmer nach dem Abgeben zum Vergleich angezeigt.</div>
+</div>
+
+<button type="submit" class="btn btn-primary">Speichern</button>
+<a asp-action="Index" class="btn btn-secondary">Abbrechen</a>

@@ -1,0 +1,21 @@
+@* Dropdown zum Filtern einer Liste nach Themengebiet. Erwartet ViewData["ThemengebietAuswahl"] und ViewData["ThemengebietId"].
+   method="get": Der Filter landet in der URL (?themengebietId=1) – so kann man die gefilterte Seite neu laden oder verlinken. *@
+@{
+    var auswahl = ViewData["ThemengebietAuswahl"] as List<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> ?? new();
+    var aktuell = ViewData["ThemengebietId"] as int?;
+}
+<form method="get" class="row g-2 align-items-center mb-3">
+    <div class="col-auto">
+        <label for="themengebietId" class="col-form-label">Themengebiet:</label>
+    </div>
+    <div class="col-auto">
+        <select id="themengebietId" name="themengebietId" class="form-select" onchange="this.form.submit()">
+            <option value="">Alle</option>
+            @foreach (var eintrag in auswahl)
+            {
+                <option value="@eintrag.Value" selected="@(eintrag.Value == aktuell?.ToString())">@eintrag.Text</option>
+            }
+        </select>
+    </div>
+    <noscript><div class="col-auto"><button type="submit" class="btn btn-outline-secondary">Filtern</button></div></noscript>
+</form>

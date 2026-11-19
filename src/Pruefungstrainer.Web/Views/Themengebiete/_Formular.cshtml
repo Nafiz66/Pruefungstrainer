@@ -1,0 +1,25 @@
+@model Themengebiet
+@* Gemeinsame Formularfelder für "Anlegen" und "Bearbeiten". *@
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+    <label asp-for="Name" class="form-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Kategorie" class="form-label"></label>
+    <input asp-for="Kategorie" class="form-control" placeholder="z. B. AP1 oder AP2" />
+    <span asp-validation-for="Kategorie" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Beschreibung" class="form-label"></label>
+    <textarea asp-for="Beschreibung" class="form-control" rows="4"></textarea>
+    <span asp-validation-for="Beschreibung" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Speichern</button>
+<a asp-action="Index" class="btn btn-secondary">Abbrechen</a>

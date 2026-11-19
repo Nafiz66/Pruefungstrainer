@@ -1,0 +1,105 @@
+@model LernpfadElementeViewModel
+
+@{
+    ViewData["Title"] = "Inhalte des Lernpfads";
+    var lernpfad = Model.Lernpfad;
+    var elemente = lernpfad.Elemente.OrderBy(e => e.Reihenfolge).ToList();
+}
+
+<h1>@lernpfad.Titel</h1>
+<p class="text-muted">Themengebiet: @lernpfad.Themengebiet.Name – Teilnehmer bearbeiten die Inhalte in dieser Reihenfolge.</p>
+
+@if (elemente.Count == 0)
+{
+    <div class="alert alert-info">Der Lernpfad ist noch leer. Füge unten Karteikarten und Fragen hinzu.</div>
+}
+else
+{
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Typ</th>
+                <th>Inhalt</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < elemente.Count; i++)
+            {
+                var element = elemente[i];
+                <tr>
+                    <td>@element.Reihenfolge</td>
+                    <td>
+                        <span class="badge @(element.Typ == ElementTyp.Karteikarte ? "bg-info text-dark" : "bg-warning text-dark")">@element.Typ</span>
+                    </td>
+                    <td>@(element.Typ == ElementTyp.Karteikarte ? element.Karteikarte?.Frage : element.Frage?.Fragetext)</td>
+                    <td class="text-end text-nowrap">
+                        <form asp-action="ElementVerschieben" method="post" class="d-inline">
+                            <input type="hidden" name="lernpfadId" value="@lernpfad.Id" />
+                            <input type="hidden" name="elementId" value="@element.Id" />
+                            <input type="hidden" name="nachOben" value="true" />
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" disabled="@(i == 0)" title="Nach oben">▲</button>
+                        </form>
+                        <form asp-action="ElementVerschieben" method="post" class="d-inline">
+                            <input type="hidden" name="lernpfadId" value="@lernpfad.Id" />
+                            <input type="hidden" name="elementId" value="@element.Id" />
+                            <input type="hidden" name="nachOben" value="false" />
+                            <button type="submit" class="btn btn-sm btn-outline-secondary" disabled="@(i == elemente.Count - 1)" title="Nach unten">▼</button>
+                        </form>
+                        <form asp-action="ElementEntfernen" method="post" class="d-inline" data-bestaetigen="Element aus dem Lernpfad entfernen?">
+                            <input type="hidden" name="lernpfadId" value="@lernpfad.Id" />
+                            <input type="hidden" name="elementId" value="@element.Id" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Entfernen</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div class="row g-3 mt-2">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h6">Karteikarte hinzufügen</h2>
+                @if (Model.VerfuegbareKarteikarten.Count == 0)
+                {
+                    <p class="text-muted mb-0">Keine weiteren Karteikarten in diesem Themengebiet.</p>
+                }
+                else
+                {
+                    <form asp-action="ElementHinzufuegen" method="post" class="d-flex gap-2">
+                        <input type="hidden" name="lernpfadId" value="@lernpfad.Id" />
+                        <input type="hidden" name="typ" value="@ElementTyp.Karteikarte" />
+                        <select name="inhaltId" asp-items="Model.VerfuegbareKarteikarten" class="form-select"></select>
+                        <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h6">Frage hinzufügen</h2>
+                @if (Model.VerfuegbareFragen.Count == 0)
+                {
+                    <p class="text-muted mb-0">Keine weiteren Fragen in diesem Themengebiet.</p>
+                }
+                else
+                {
+                    <form asp-action="ElementHinzufuegen" method="post" class="d-flex gap-2">
+                        <input type="hidden" name="lernpfadId" value="@lernpfad.Id" />
+                        <input type="hidden" name="typ" value="@ElementTyp.Frage" />
+                        <select name="inhaltId" asp-items="Model.VerfuegbareFragen" class="form-select"></select>
+                        <button type="submit" class="btn btn-primary">Hinzufügen</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-secondary mt-4" asp-action="Index">Zurück zur Übersicht</a>

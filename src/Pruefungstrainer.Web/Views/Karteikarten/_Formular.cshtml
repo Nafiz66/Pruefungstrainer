@@ -1,0 +1,27 @@
+@model KarteikarteFormViewModel
+@* Gemeinsame Formularfelder für "Karteikarte anlegen" und "Karteikarte bearbeiten". *@
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+    <label asp-for="ThemengebietId" class="form-label"></label>
+    <select asp-for="ThemengebietId" asp-items="Model.ThemengebietAuswahl" class="form-select">
+        <option value="0">– bitte wählen –</option>
+    </select>
+    <span asp-validation-for="ThemengebietId" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Frage" class="form-label"></label>
+    <textarea asp-for="Frage" class="form-control" rows="2"></textarea>
+    <span asp-validation-for="Frage" class="text-danger"></span>
+</div>
+
+<div class="mb-3">
+    <label asp-for="Antwort" class="form-label"></label>
+    <textarea asp-for="Antwort" class="form-control" rows="4"></textarea>
+    <span asp-validation-for="Antwort" class="text-danger"></span>
+</div>
+
+<button type="submit" class="btn btn-primary">Speichern</button>
+<a asp-action="Index" class="btn btn-secondary">Abbrechen</a>

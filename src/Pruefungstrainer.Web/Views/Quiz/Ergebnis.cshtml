@@ -1,0 +1,61 @@
+@model Pruefungsergebnis
+
+@{
+    ViewData["Title"] = "Ergebnis";
+    var prozent = Model.MaxPunkte == 0 ? 0 : Model.ErreichtePunkte * 100 / Model.MaxPunkte;
+}
+
+<h1>Ergebnis</h1>
+
+<div class="alert @(Model.Bestanden ? "alert-success" : "alert-warning")">
+    <div class="fs-4">
+        @Model.ErreichtePunkte von @Model.MaxPunkte Punkten (@prozent %) –
+        <strong>@(Model.Bestanden ? "bestanden" : "noch nicht bestanden")</strong>
+    </div>
+    <div class="small">
+        @Model.DurchgefuehrtAm.ToLocalTime().ToString("dd.MM.yyyy HH:mm") Uhr
+        @if (Model.Lernpfad is not null)
+        {
+            <span>· Lernpfad: @Model.Lernpfad.Titel</span>
+        }
+    </div>
+</div>
+
+@foreach (var detail in Model.Details.OrderBy(d => d.Id))
+{
+    var frage = detail.Frage;
+    <div class="card mb-3 border-@(detail.IstKorrekt ? "success" : "danger")">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <span class="badge @(detail.IstKorrekt ? "bg-success" : "bg-danger")">@(detail.IstKorrekt ? "richtig" : "falsch")</span>
+                <span class="small text-muted">@frage.Themengebiet.Name · @detail.ErreichtePunkte / @frage.Punkte Punkte</span>
+            </div>
+            <p class="fs-5 mt-2">@frage.Fragetext</p>
+
+            <p class="mb-1"><strong>Deine Antwort:</strong> @(string.IsNullOrWhiteSpace(detail.GegebeneAntwort) ? "(keine Antwort)" : detail.GegebeneAntwort)</p>
+
+            @if (frage.Typ == Fragetyp.MultipleChoice)
+            {
+                <p class="mb-0"><strong>Richtig wäre:</strong> @string.Join("; ", frage.Antwortoptionen.Where(a => a.IstKorrekt).Select(a => a.Text))</p>
+            }
+            else
+            {
+                <p class="mb-2"><strong>Musterlösung:</strong> @frage.MusterloesungFreitext</p>
+
+                @* Freitext kann der Computer nicht sicher bewerten – der Teilnehmer vergleicht selbst. *@
+                @if (!detail.IstKorrekt && !string.IsNullOrWhiteSpace(detail.GegebeneAntwort))
+                {
+                    <form asp-action="FreitextWerten" method="post"
+                          data-bestaetigen="Stimmt deine Antwort inhaltlich mit der Musterlösung überein?">
+                        <input type="hidden" name="detailId" value="@detail.Id" />
+                        <input type="hidden" name="ergebnisId" value="@Model.Id" />
+                        <button type="submit" class="btn btn-sm btn-outline-success">Meine Antwort war richtig</button>
+                    </form>
+                }
+            }
+        </div>
+    </div>
+}
+
+<a class="btn btn-primary" asp-controller="Lernen" asp-action="Index">Zum Lernbereich</a>
+<a class="btn btn-outline-secondary" asp-action="Verlauf">Alle Ergebnisse</a>
